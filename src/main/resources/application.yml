@@ -6,6 +6,6 @@ spring:
   cloud:
     config:
       uri: http://localhost:8888/
-      label: dev/Alisher
+      label: dev/Muhammadamin
   config:
     import: optional:configserver:http://localhost:8888/
