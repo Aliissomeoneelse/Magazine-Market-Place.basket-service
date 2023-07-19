@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
+import java.util.Set;
 
 @RestController
 @RequiredArgsConstructor
@@ -57,5 +58,10 @@ public class LoanerController {
     )
     public ResponseDto<LoanerDto> delete(@PathVariable("id") Integer id){
         return loanerService.delete(id);
+    }
+
+    @GetMapping("/get-loaners-by-user/{id}")
+    public ResponseDto<Set<LoanerDto>> getLoanersByUserId(@PathVariable("id") Integer id){
+        return loanerService.getLoanersByUserId(id);
     }
 }

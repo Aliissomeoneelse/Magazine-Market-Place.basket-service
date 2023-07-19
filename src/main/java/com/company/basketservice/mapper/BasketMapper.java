@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 @Mapper(componentModel = "spring")
 public abstract class BasketMapper {
 
-    @Mapping(target = "id", ignore = true)
+
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
     @Mapping(target = "deletedAt", ignore = true)
@@ -21,7 +21,7 @@ public abstract class BasketMapper {
 
     public abstract BasketDto toDto(Basket basket);
 
-    @Mapping(target = "id", ignore = true)
+
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
     @Mapping(target = "deletedAt", ignore = true)

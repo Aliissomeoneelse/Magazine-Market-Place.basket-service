@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
@@ -41,10 +42,10 @@ public class LoanerService {
     }
 
     public ResponseDto<Page<LoanerDto>> getAll(Map<String, String> params) {
-        Page<LoanerDto> basket = this.loanerRepositoryImpl
+        Page<LoanerDto> loaners = this.loanerRepositoryImpl
                 .getLoaner(params)
                 .map(this.loanerMapper::toDto);
-        if (basket.isEmpty()) {
+        if (loaners.isEmpty()) {
             return ResponseDto.<Page<LoanerDto>>builder()
                     .message("This params " + params + " are not found")
                     .build();
@@ -52,7 +53,7 @@ public class LoanerService {
         return ResponseDto.<Page<LoanerDto>>builder()
                 .message("Ok")
                 .success(true)
-                .data(basket)
+                .data(loaners)
                 .build();
     }
 
@@ -131,6 +132,23 @@ public class LoanerService {
                     .code(-1)
                     .build();
         }
+    }
+
+
+    public ResponseDto<Set<LoanerDto>> getLoanersByUserId(Integer id) {
+        Set<Loaner> loaners = loanerRepository.findAllById(id);
+        if (loaners.isEmpty()) {
+            return ResponseDto.<Set<LoanerDto>>builder()
+                    .message("Loaner is not found!")
+                    .code(-3)
+                    .data(null)
+                    .build();
+        }
+        return ResponseDto.<Set<LoanerDto>>builder()
+                .success(true)
+                .message("OK")
+                .data(loanerMapper.toSetDto(loaners))
+                .build();
     }
 }
 
