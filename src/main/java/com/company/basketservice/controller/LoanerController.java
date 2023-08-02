@@ -1,8 +1,10 @@
 package com.company.basketservice.controller;
 
 
+import com.company.basketservice.client.UserClient;
 import com.company.basketservice.dto.LoanerDto;
 import com.company.basketservice.dto.ResponseDto;
+import com.company.basketservice.dto.TestResponse;
 import com.company.basketservice.service.LoanerService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +20,7 @@ import java.util.Set;
 public class LoanerController {
 
     private final LoanerService loanerService;
+    private final UserClient userClient;
 
 
     @PostMapping("/create")
@@ -63,5 +66,10 @@ public class LoanerController {
     @GetMapping("/get-loaners-by-user/{id}")
     public ResponseDto<Set<LoanerDto>> getLoanersByUserId(@PathVariable("id") Integer id){
         return loanerService.getLoanersByUserId(id);
+    }
+
+    @GetMapping("/")
+    public TestResponse getValue(){
+        return this.userClient.getValue();
     }
 }

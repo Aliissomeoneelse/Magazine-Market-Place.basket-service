@@ -1,8 +1,10 @@
 package com.company.basketservice.controller;
 
 
+import com.company.basketservice.client.UserClient;
 import com.company.basketservice.dto.BasketDto;
 import com.company.basketservice.dto.ResponseDto;
+import com.company.basketservice.dto.TestResponse;
 import com.company.basketservice.service.BasketService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
